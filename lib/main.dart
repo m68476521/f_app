@@ -7,20 +7,19 @@ void main() => runApp(SecondScreen());
 class SecondScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter layout demo',
-      theme: ThemeData(
-        primaryColor: Colors.green,
+    return Container(
+      decoration: BoxDecoration(color: Colors.green),
+      child: Center(
+        child: Text(
+          'Develop by m68476521',
+          textDirection: TextDirection.ltr,
+          style: TextStyle(
+            fontSize: 32,
+            color: Colors.black87,
+          ),
+        )
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Flutter layout demo'),
-        ),
-        body: Center(
-          child: Text('Mike layout example'),
-        ),
-      ),
-    );
+    )
   }
 }
 
