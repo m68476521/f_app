@@ -7,19 +7,48 @@ void main() => runApp(SecondScreen());
 class SecondScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(color: Colors.green),
-      child: Center(
-        child: Text(
-          'Develop by m68476521',
-          textDirection: TextDirection.ltr,
-          style: TextStyle(
-            fontSize: 32,
-            color: Colors.black87,
-          ),
-        )
+    return MaterialApp(
+
+      home: Center(
+          child: ColumnExample()
       ),
     );
+  }
+}
+
+class ColumnA extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      body: new Container(
+        child: new Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Text('Deliver features faster'),
+            Text('Craft beatiful UIs'),
+            Expanded(
+              child: FittedBox(
+                fit: BoxFit.contain, // otherwise the logo will be tiny
+                child: const FlutterLogo(),
+              ),
+            )
+          ],
+        ),
+      ),
+    )
+  }
+}
+
+class ColumnExample extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text("Chat Item"),
+        backgroundColor: Colors.lightGreen,
+      ),
+      body: new ColumnA(),
+    )
   }
 }
 
@@ -55,34 +84,32 @@ class RandomWordsState extends State<RandomWords> {
   }
 
   void pushSaved() {
-      Navigator.of(context).push(
-        MaterialPageRoute<void>(
-          builder: (BuildContext context) {
-            final Iterable<ListTile> tiles = _saved.map(
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (BuildContext context) {
+          final Iterable<ListTile> tiles = _saved.map(
                 (WordPair pair) {
-                  return ListTile(
-                    title: Text(
-                      pair.asPascalCase,
-                      style: _biggerFont,
-                    ),
-                  );
-                },
-            );
-            final List<Widget> divided = ListTile
-                .divideTiles(
-                  context: context,
-                tiles: tiles,
-            )
-                .toList();
-            return Scaffold(
-              appBar: AppBar(
-                title: Text('Saved Suggestions'),
-              ),
-              body: ListView(children: divided),
-            );
-          },
-        ),
-      );
+              return ListTile(
+                title: Text(
+                  pair.asPascalCase,
+                  style: _biggerFont,
+                ),
+              );
+            },
+          );
+          final List<Widget> divided = ListTile.divideTiles(
+            context: context,
+            tiles: tiles,
+          ).toList();
+          return Scaffold(
+            appBar: AppBar(
+              title: Text('Saved Suggestions'),
+            ),
+            body: ListView(children: divided),
+          );
+        },
+      ),
+    );
   }
 
   Widget _buildSuggestions() {
