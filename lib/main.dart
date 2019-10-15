@@ -35,7 +35,7 @@ class ColumnA extends StatelessWidget {
           ],
         ),
       ),
-    )
+    );
   }
 }
 
@@ -48,7 +48,7 @@ class ColumnExample extends StatelessWidget {
         backgroundColor: Colors.lightGreen,
       ),
       body: new ColumnA(),
-    )
+    );
   }
 }
 
